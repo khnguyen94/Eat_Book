@@ -14,6 +14,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // Create handle reference on the database
+var database = firebase.database();
 
 // Create on-submit listener
 // Takes in the form inputs and stores them in the database, use .push()
