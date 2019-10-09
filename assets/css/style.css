@@ -5,3 +5,7 @@
 #map-panel {
     background-color: pink;
 }
+
+.container {
+    height: fit-content;
+}
