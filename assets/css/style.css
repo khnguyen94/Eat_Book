@@ -1,0 +1,11 @@
+#to-do-panel {
+    background-color: grey;
+}
+
+#map-panel {
+    background-color: pink;
+}
+
+.container {
+    height: fit-content;
+}
