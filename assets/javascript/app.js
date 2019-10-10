@@ -16,6 +16,18 @@ firebase.initializeApp(firebaseConfig);
 // Create handle reference on the database
 var database = firebase.database();
 
+// Create a renderRestaurants function that obtains a Yelp API response
+function renderRestaurants() {
+  var queryURL = "";
+
+  $.ajax({
+    url: queryURL, 
+    method: GET
+  }).then(function() {
+
+  });
+};
+
 // Create on-submit listener
 // Takes in the form inputs and stores them in the database, use .push()
 
