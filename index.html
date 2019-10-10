@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -38,19 +36,28 @@
             <a href="#" class="brand-logo center">We need a good title</a>
         </div>
         <div class="valign-wrapper nav-content row">
-            <form class="input-field col s7 offset-s2">
+            <form class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">search</i>
-                <input type="text" placeholder="search" id="search-input" class="autocomplete">
+                <input type="text" placeholder="Search" id="search-input" class="autocomplete">
             </form>
 
-            <div class="col s3">
-                <button class="btn waves-effect waves-light white-text" type="submit" name="action" id="submit-button">Submit
+            <div class="col s4">
+                <button class="btn waves-effect waves-light white-text submit-button" type="submit" name="action"
+                    id="search-submit-button">Submit
                     <!-- <i class="small material-icons right">send</i> -->
                 </button>
             </div>
         </div>
     </nav>
-
+    <div class="row container" id="email-row">
+        <div class="col s8 offset-s1">
+            <input type="text" placeholder="Email Input" id="email-input" class="autocomplete">
+        </div>
+        <div class="col s3">
+            <a class="btn-floating submit-button" id="email-submit-button"> <i class="material-icons">send</i></a>
+            </button>
+        </div>
+    </div>
     <div class="center-align">
         <p>So many restaurants... So little time...</p>
         <br>
