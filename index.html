@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="../potential_project1/assets/css/reset.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -27,17 +31,41 @@
 </head>
 
 <body>
+
     <!-- Create top nav bar -->
-    <div></div>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">We need a good title</a>
+        </div>
+        <div class="valign-wrapper nav-content row">
+            <form class="input-field col s7 offset-s2">
+                <i class="material-icons prefix">search</i>
+                <input type="text" placeholder="search" id="search-input" class="autocomplete">
+            </form>
 
-    <!-- Create upcoming reservations display -->
-    <div class="jumbotron"></div>
+            <div class="col s3">
+                <button class="btn waves-effect waves-light white-text" type="submit" name="action" id="submit-button">Submit
+                    <!-- <i class="small material-icons right">send</i> -->
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Create main body content display, include: to-visit list, map, and total-visits  -->
-    <div class="jumbotron"></div>
+    <div class="center-align">
+        <p>So many restaurants... So little time...</p>
+        <br>
+    </div>
+    <!-- Content row  -->
+    <div class="row">
+        <div class="col s12 m4" id="to-do-panel">
+            <h2>To Go List</h2>
 
-    <!-- Create restaurant scheduler display -->
-    <div class="jumbotron"></div>
+        </div>
+        <div class="col s12 m8" id="map-panel">
+            <h2>Map</h2>
+        </div>
+    </div>
+
 
     <!-- Link JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -45,6 +73,9 @@
     <!-- LINKS FOR FIREBASE GO HERE -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+    <!-- Link to API Keys -->
+    <script src="../potential_project1/apiKeys.js"></script>
 
     <!-- Link Custom JS -->
     <script src="../potential_project1/assets/javascript/app.js"></script>
