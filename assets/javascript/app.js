@@ -17,14 +17,34 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 // Create a renderRestaurants function that obtains a Yelp API response
+
+// Base queryURL
+// https://api.yelp.com/v3/autocomplete
+
+// categories
+// "restaurants, All"
+
+// Seattle's 
+// latitude= 47.6062
+// longitude= 122.3321
+
 function renderRestaurants() {
-  var queryURL = "";
+  // Create a reference to HTML input for search bar
+  var searchString = $("search-input");
+
+  var queryURL = "https://api.yelp.com/v3/autocomplete?text=" + searchString + "&latitude=47.6062&longitude=122.3321";
 
   $.ajax({
     url: queryURL, 
     method: GET
-  }).then(function() {
+  }).then(function(response) {
+    
+    console.log(response.data);
 
+    // Create a new Yelp API Response reference
+    var yelpRes = response.data;
+
+    // 
   });
 };
 
