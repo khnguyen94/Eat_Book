@@ -56,4 +56,6 @@ $(document).ready(
     var emailInput = $("#email-input").val().trim();
     console.log(emailInput);
     $("#email-input").val("");
+
+    
 });
