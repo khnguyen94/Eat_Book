@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -35,25 +33,120 @@
     <!-- Create top nav bar -->
     <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">We need a good title</a>
+            <a href="#" class="brand-logo center">Restaurants</a>
         </div>
         <div class="valign-wrapper nav-content row">
-            <form class="input-field col s7 offset-s2">
+            <!-- search bar  -->
+            <form class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">search</i>
-                <input type="text" placeholder="search" id="search-input" class="autocomplete">
+                <input type="text" placeholder="Discover new Italian, American, French restaurants..." id="search-input"
+                    class="white-text autocomplete">
             </form>
-
-            <div class="col s3">
-                <button class="btn waves-effect waves-light white-text" type="submit" name="action" id="submit-button">Submit
-                    <!-- <i class="small material-icons right">send</i> -->
+            <!-- submit button for search bar  -->
+            <div class="col s4">
+                <button class="btn waves-effect waves-light white-text submit-button" type="submit" name="action"
+                    id="search-submit-button">Submit
                 </button>
             </div>
         </div>
     </nav>
+    <!-- Email input row  -->
+    <div class="row container" id="email-row">
+        <div class="col s8 offset-s1">
+            <input type="text" placeholder="Enter your Email to save your list" id="email-input" class="autocomplete">
+        </div>
+        <!-- submit icon  -->
+        <div class="col s3">
+            <a class="btn-floating submit-button" id="email-submit-button"> <i
+                    class="waves-effect waves-light material-icons">send</i></a>
+            </button>
+        </div>
+    </div>
 
-    <div class="center-align">
-        <p>So many restaurants... So little time...</p>
-        <br>
+    <div class="row container" id="search-container">
+        <h6 class="header">Here are our top 4 suggestions...</h2>
+
+            <div class="col s12 m6">
+
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="https://lorempixel.com/100/190/nature/6">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p class="search-text-display" id="restaurant-name-display">Din Tai Fung</p>
+                            <p class="search-text-display" id="restaurant-rating-display">Rating:5 star</p>
+                            <p class="search-text-display" id="restaurant-address-display">2621 NE 46th St, Seattle, WA
+                                98105</p>
+                            <p class="search-text-display" id="restaurant-phone-display">206-525-0958</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Add to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="https://lorempixel.com/100/190/nature/6">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p class="search-text-display" id="restaurant-name-display">Din Tai Fung</p>
+                            <p class="search-text-display" id="restaurant-rating-display">Rating:5 star</p>
+                            <p class="search-text-display" id="restaurant-address-display">2621 NE 46th St, Seattle, WA
+                                98105</p>
+                            <p class="search-text-display" id="restaurant-phone-display">206-525-0958</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Add to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="https://lorempixel.com/100/190/nature/6">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p class="search-text-display" id="restaurant-name-display">Din Tai Fung</p>
+                                <p class="search-text-display" id="restaurant-rating-display">Rating:5 star</p>
+                                <p class="search-text-display" id="restaurant-address-display">2621 NE 46th St, Seattle, WA
+                                    98105</p>
+                                <p class="search-text-display" id="restaurant-phone-display">206-525-0958</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Add to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+
+                        <div class="card horizontal">
+                            <div class="card-image">
+                                <img src="https://lorempixel.com/100/190/nature/6">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <p class="search-text-display" id="restaurant-name-display">Din Tai Fung</p>
+                                    <p class="search-text-display" id="restaurant-rating-display">Rating:5 star</p>
+                                    <p class="search-text-display" id="restaurant-address-display">2621 NE 46th St, Seattle, WA
+                                        98105</p>
+                                    <p class="search-text-display" id="restaurant-phone-display">206-525-0958</p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">Add to List</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
     </div>
     <!-- Content row  -->
     <div class="row">
@@ -65,7 +158,6 @@
             <h2>Map</h2>
         </div>
     </div>
-
 
     <!-- Link JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
