@@ -37,58 +37,59 @@ function renderRestaurants() {
   // Construct queryURL
   // What is Curl?
   // curl -X GET --header "Accept: application/json" --header "user-key: d9062abf7aa13be6e735eea8b73c32c8" "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=italian&count=5&lat=47.6062&lon=-122.3321"
+  // When I run the curl request from terminal and manually putting in the API key, it works 
+
   var queryURL =
     "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=" +
     searchString +
-    "italian&count=5&lat=47.6062&lon=-122.3321";
+    "&count=5";
   var seattleID = "279";
-  var seattleLat = "47.6062";
-  var seattleLon = "-122.3321";
+
 
   // AJAX command
   $.ajax({
-    "user-key": zomatoAPIKey,
+    "user-key": zomatoAPIKey, 
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
+    console.log(response.data);
   });
 
-  // Using a for-loop, loop through the JSON API response and dynamically create 4 new restaurant cards and append them to search result display
-  for (var i = 0; i < response.length; i++) {
-    // REFERENCE UPDATE NEEDED
-    // Create a new newSearchResultCol div
-    // Assign it a class of "col s12 m6"
-    var newSearchResultCol = $("<div>");
-    newSearchResultCol.addClass("col s12 m6");
+  // // Using a for-loop, loop through the JSON API response and dynamically create 4 new restaurant cards and append them to search result display
+  // for (var i = 0; i < response.length; i++) {
+  //   // REFERENCE UPDATE NEEDED
+  //   // Create a new newSearchResultCol div
+  //   // Assign it a class of "col s12 m6"
+  //   var newSearchResultCol = $("<div>");
+  //   newSearchResultCol.addClass("col s12 m6");
 
-    // Create a new newSearchResultColCard div
-    // Assign it a class of "card horizontal"
-    var newSearchResultColCard = $("<div>");
-    newSearchResultColCard.addClass("card horizontal");
+  //   // Create a new newSearchResultColCard div
+  //   // Assign it a class of "card horizontal"
+  //   var newSearchResultColCard = $("<div>");
+  //   newSearchResultColCard.addClass("card horizontal");
 
-    // Create a new div to hold the card
-    // Assign it a class of "card-image"
-    var newSearchResultColImgDiv = $("<div>");
-    newSearchResultColImgDiv.addClass("card-image");
+  //   // Create a new div to hold the card
+  //   // Assign it a class of "card-image"
+  //   var newSearchResultColImgDiv = $("<div>");
+  //   newSearchResultColImgDiv.addClass("card-image");
 
-    // Create a new img div
-    // Assign it an attribute of src and set the src to be the image of the ith object in response
-    var newSearchResultColImage = $("<img>");
-    newSearchResultColImage.attr("src", response[i]); // REFERENCE UPDATE NEEDED
+  //   // Create a new img div
+  //   // Assign it an attribute of src and set the src to be the image of the ith object in response
+  //   var newSearchResultColImage = $("<img>");
+  //   newSearchResultColImage.attr("src", response[i]); // REFERENCE UPDATE NEEDED
 
-    // Append image to imgdiv
-    newSearchResultColImgDiv.append(newSearchResultColImage);
+  //   // Append image to imgdiv
+  //   newSearchResultColImgDiv.append(newSearchResultColImage);
 
-    // Append imgdiv to card
-    newSearchResultColCard.append(newSearchResultColImgDiv);
+  //   // Append imgdiv to card
+  //   newSearchResultColCard.append(newSearchResultColImgDiv);
 
-    // Append card to col
-    newSearchResultCol.append(newSearchResultColCard);
+  //   // Append card to col
+  //   newSearchResultCol.append(newSearchResultColCard);
 
-    // Append col to search result display
-    $("#search-container").append(newSearchResultCol);
-  };
+  //   // Append col to search result display
+  //   $("#search-container").append(newSearchResultCol);
+  // };
 };
 
 // Create on-submit that then runs the renderRestaurants functino
