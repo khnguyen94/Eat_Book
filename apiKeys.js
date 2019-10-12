@@ -1,6 +1,12 @@
-// Yelp API Key
+// Zomato API Key
 
-var yelpAPIKey = "0pr-8jekpNQV-m9HmOdt2PtCqbPmzoz6Pr5ShxpXnrysIvNSiUiCT8OySbtx0HtcCr5jKIBlapT6jqNcFQlGufIkPjiIaGwYKAU-Wk9tIfVpW7j4keYz61j6xQucXXYx"; 
+var zomatoAPIKey = "d9062abf7aa13be6e735eea8b73c32c8";
+
+
+// Menu API
+
+var menuAPIKey = "70ea438ae5msh0a9159eb34dbcacp190b8ajsndc3e9e25c982";
+
 
 
 // Google Maps API Key
