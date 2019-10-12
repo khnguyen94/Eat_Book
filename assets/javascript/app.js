@@ -58,12 +58,12 @@ $("submit-button").on("click", function() {
 });
 
 // Create an on-click event listener that will capture and store the restaurant data from the specific search result the user clicked on in the database
-$("search-result").on("click", function() {
+$("#search-submit-button").on("click", function() {
   // Open up an in-browser pop-up that prompts the user if they want to add it to their to-visit list, "Add to to-visit list?"
 
   // Create internal on-click listeners for confirm add & cancel
   // Click "Confirm" to add
-  $("confirm-add-button").on("click", function(event) {
+  $("#add-to-list-btn").on("click", function(event) {
     // Prevent page refresh/reload
     event.preventDefault();
 
