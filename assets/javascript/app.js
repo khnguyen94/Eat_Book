@@ -16,49 +16,91 @@ firebase.initializeApp(firebaseConfig);
 // Create handle reference on the database
 var database = firebase.database();
 
-// Create a renderRestaurants function that obtains a Yelp API response
+// Create a renderRestaurants function that obtains am API response
 
 // Base queryURL
-// https://api.yelp.com/v3/autocomplete
-
-// categories
-// "restaurants, All"
+// https://us-restaurant-menus.p.rapidapi.com
 
 // Seattle's
 // latitude= 47.6062
-// longitude= 122.3321
+// longitude= -122.3321
 
-// Create a renderRestaurants function that gets an API response from the Yelp API
+// Create a renderRestaurants function that gets an API response
 function renderRestaurants() {
-  // Create a reference to HTML input for search bar
-  var searchString = $("search-input");
+  // Grab the text from the search input
+  var searchString = $("#search-input")
+    .val()
+    .trim();
 
-  // The search term should be passed through the renderRestaurant function
+  console.log(searchString);
+
+  // Construct queryURL
+  // What is Curl?
+  // curl -X GET --header "Accept: application/json" --header "user-key: d9062abf7aa13be6e735eea8b73c32c8" "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=italian&count=5&lat=47.6062&lon=-122.3321"
+  // When I run the curl request from terminal and manually putting in the API key, it works 
+
   var queryURL =
-    "https://api.yelp.com/v3/autocomplete?text=" +
+    "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=" +
     searchString +
-    "&latitude=47.6062&longitude=122.3321";
+    "&count=5";
+  var seattleID = "279";
 
+
+  // AJAX command
   $.ajax({
+    "user-key": zomatoAPIKey, 
     url: queryURL,
-    method: GET
+    method: "GET"
   }).then(function(response) {
     console.log(response.data);
-
-    // Create a new Yelp API Response reference
-    var yelpRes = response.data;
-
-    //
   });
-}
+
+  // // Using a for-loop, loop through the JSON API response and dynamically create 4 new restaurant cards and append them to search result display
+  // for (var i = 0; i < response.length; i++) {
+  //   // REFERENCE UPDATE NEEDED
+  //   // Create a new newSearchResultCol div
+  //   // Assign it a class of "col s12 m6"
+  //   var newSearchResultCol = $("<div>");
+  //   newSearchResultCol.addClass("col s12 m6");
+
+  //   // Create a new newSearchResultColCard div
+  //   // Assign it a class of "card horizontal"
+  //   var newSearchResultColCard = $("<div>");
+  //   newSearchResultColCard.addClass("card horizontal");
+
+  //   // Create a new div to hold the card
+  //   // Assign it a class of "card-image"
+  //   var newSearchResultColImgDiv = $("<div>");
+  //   newSearchResultColImgDiv.addClass("card-image");
+
+  //   // Create a new img div
+  //   // Assign it an attribute of src and set the src to be the image of the ith object in response
+  //   var newSearchResultColImage = $("<img>");
+  //   newSearchResultColImage.attr("src", response[i]); // REFERENCE UPDATE NEEDED
+
+  //   // Append image to imgdiv
+  //   newSearchResultColImgDiv.append(newSearchResultColImage);
+
+  //   // Append imgdiv to card
+  //   newSearchResultColCard.append(newSearchResultColImgDiv);
+
+  //   // Append card to col
+  //   newSearchResultCol.append(newSearchResultColCard);
+
+  //   // Append col to search result display
+  //   $("#search-container").append(newSearchResultCol);
+  // };
+};
 
 // Create on-submit that then runs the renderRestaurants functino
-$("submit-button").on("click", function() {
+$("#search-submit-button").on("click", function() {
   renderRestaurants();
 });
 
 // Create an on-click event listener that will capture and store the restaurant data from the specific search result the user clicked on in the database
 $("#search-submit-button").on("click", function() {
+// Then it should add functionality to add that restaurant to the to-visit list
+$("").on("click", function() {
   // Open up an in-browser pop-up that prompts the user if they want to add it to their to-visit list, "Add to to-visit list?"
 
   // Create internal on-click listeners for confirm add & cancel
@@ -147,7 +189,6 @@ $("#search-submit-button").on("click", function() {
 // Create new to-do items based on Firebase data, have it auto refresh and auto populate when data changes, use "Add_Child" listener
 // append to display area on the dashboard
 
-
 //
 $(document).ready(
   // When #submit-button click, grab searchInput from #search-input
@@ -159,27 +200,26 @@ $(document).ready(
   })
 );
 
-
-
-// 
+//
 $(document).ready(
-
-  // When #submit-button click, grab searchInput from #search-input 
+  // When #submit-button click, grab searchInput from #search-input
   $(".submit-button").on("click", function submitButtonPreventDefault(e) {
     e.preventDefault();
-  }));
-  // grab searchInput from #search-input
-  $("#search-submit-button").on("click", function () {
-    var searchInput = $("#search-input").val().trim();
-    console.log(searchInput);
-    $("#search-input").val("");
-  });
-  // grab emailInput from #email-input
-  $("#email-submit-button").on("click", function () {
-    var emailInput = $("#email-input").val().trim();
-    console.log(emailInput);
-    $("#email-input").val("");
-
-    
+  })
+);
+// grab searchInput from #search-input
+$("#search-submit-button").on("click", function() {
+  var searchInput = $("#search-input")
+    .val()
+    .trim();
+  // console.log(searchInput);
+  $("#search-input").val("");
 });
-
+// grab emailInput from #email-input
+$("#email-submit-button").on("click", function() {
+  var emailInput = $("#email-input")
+    .val()
+    .trim();
+  console.log(emailInput);
+  $("#email-input").val("");
+});
