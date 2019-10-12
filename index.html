@@ -50,6 +50,7 @@
             </div>
         </div>
     </nav>
+
     <!-- Email input row  -->
     <div class="row container" id="email-row">
         <div class="col s8 offset-s1">
@@ -63,8 +64,9 @@
         </div>
     </div>
 
+    <!-- search container  -->
     <div class="row container" id="search-container">
-        <h6 class="header">Here are our top 4 suggestions...</h2>
+        <h6 class="header">Here are our top suggestions...</h2>
 
             <div class="col s12 m6">
                 <div class="card horizontal">
@@ -80,19 +82,49 @@
                             <p class="search-text-display" id="restaurant-phone-display">206-525-0958</p>
                         </div>
                         <div class="card-action">
-                            <a class="waves-effect waves-light btn-flat btn-small" id="add-to-list-btn">Add to List</a>
+                            <a class="waves-effect waves-light btn-flat btn-small" id="add-to-list-btn">Save to List</a>
                         </div>
                     </div>
                 </div>
             </div>
     </div>
-    <!-- Content row  -->
-    <div class="row">
-        <div class="col s12 m4" id="to-do-panel">
-            <h2>To Go List</h2>
+
+    <!-- Content row (To Do list panel + Map panel) -->
+    <div class="row" id="content-row">
+        <div class="col s12 m5" id="togo-panel">
+            <h4 class="center-align">To Go List</h4>
+            <table class="highlight centered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Rating</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Din Tai Fung</td>
+                        <td>206-525-0958</td>
+                        <td>5/5</td>
+                        <td> <a href="#!" class="waves-effect waves-light btn-flat btn-small"><i
+                                    class="material-icons todo-done-btn1">done</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                            <td>Din Tai Fung</td>
+                            <td>206-525-0958</td>
+                            <td>5/5</td>
+                            <td> <a href="#!" class="waves-effect waves-light btn-flat btn-small"><i
+                                        class="material-icons todo-done-btn1">done</i></a>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
 
         </div>
-        <div class="col s12 m8" id="map-panel">
+        <div class="col s12 m7" id="map-panel">
             <h2>Map</h2>
         </div>
     </div>
