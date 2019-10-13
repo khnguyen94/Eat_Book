@@ -1,14 +1,14 @@
 // Initialize Firebase
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyCNToNaaJbIqZct7gsk1J8r9vgqGpj2aPs",
-  authDomain: "restaurant-scheduler-5cf4d.firebaseapp.com",
-  databaseURL: "https://restaurant-scheduler-5cf4d.firebaseio.com",
-  projectId: "restaurant-scheduler-5cf4d",
-  storageBucket: "",
-  messagingSenderId: "1098873832283",
-  appId: "1:1098873832283:web:00e83ace6520c4eb9c107e",
-  measurementId: "G-7FFD428JC8"
+    apiKey: "AIzaSyBCPUmsGUPIuxlTn95s4UVkzciH19_JW94",
+    authDomain: "potential-project1-fc63e.firebaseapp.com",
+    databaseURL: "https://potential-project1-fc63e.firebaseio.com",
+    projectId: "potential-project1-fc63e",
+    storageBucket: "potential-project1-fc63e.appspot.com",
+    messagingSenderId: "371811198542",
+    appId: "1:371811198542:web:657c037801356799ddc51f",
+    measurementId: "G-EXXEB38QKC"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -98,7 +98,9 @@ $("#search-submit-button").on("click", function() {
 });
 
 // Create an on-click event listener that will capture and store the restaurant data from the specific search result the user clicked on in the database
-$("#search-submit-button").on("click", function() {
+
+// $("#search-submit-button").on("click", function() {}
+
 // Then it should add functionality to add that restaurant to the to-visit list
 $("").on("click", function() {
   // Open up an in-browser pop-up that prompts the user if they want to add it to their to-visit list, "Add to to-visit list?"
@@ -199,3 +201,77 @@ $(document).ready(
     console.log(searchInput);
   })
 );
+
+// grab emailInput from #email-input
+$("#email-submit-button").on("click", function() {
+  var emailInput = $("#email-input")
+    .val()
+    .trim();
+  console.log(emailInput);
+
+  database.ref().push({
+
+    email: emailInput,
+
+   });
+  updateTheHtml();
+  $("#email-input").val("");
+});
+
+function updateTheHtml () { console.log("updateThatHtmlIsCalled")
+var userDataRef = firebase.database().ref().on(
+  'child_added',
+  snapshot => {
+    console.log(snapshot.val().email);
+    $("#todo-restaurant-name-display").append(snapshot.val().email);
+  },
+  err => {
+    console.log('Error reading from database: ', err.code);
+  });
+
+// .ref().on()
+
+// ref().on(
+//   'child_added',
+//   snapshot => {ref().on(
+//     'child_added',
+//     snapshot => {}
+// userDataRef.once("value").then(function(snapshot) { console.log(snapshot.val());
+// snapshot.forEach(function(childSnapshot) {
+//   var key = childSnapshot.key;
+//   var childData = childSnapshot.val();              
+
+//   var name_val = childSnapshot.val().email;
+//   // var id_val = childSnapshot.val().;
+//   console.log(name_val);
+
+//   $("#name").append(name_val);
+//   // $("#id").append(id_val);
+
+//   });
+// }),(function(error){ console.log(error)});
+};
+
+
+// Adding user email to authenticate via firebase
+firebase.auth().onAuthStateChanged(function(user) {
+
+  var username = usernameTxt.value;
+
+  if (user) {
+    firebaseDataBase.ref('users/' + user.uid).set({
+        email: user.email,
+        uid : user.uid,
+        username: username
+    });
+
+
+    console.log("User is signed in.");
+  } else {
+     console.log("No user is signed in.");
+
+  }
+});
+
+
+
