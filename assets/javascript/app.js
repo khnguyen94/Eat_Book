@@ -217,3 +217,61 @@ $("#email-submit-button").on("click", function() {
   updateTheHtml();
   $("#email-input").val("");
 });
+
+function updateTheHtml () { console.log("updateThatHtmlIsCalled")
+var userDataRef = firebase.database().ref().on(
+  'child_added',
+  snapshot => {
+    console.log(snapshot.val().email);
+    $("#todo-restaurant-name-display").append(snapshot.val().email);
+  },
+  err => {
+    console.log('Error reading from database: ', err.code);
+  });
+
+// .ref().on()
+
+// ref().on(
+//   'child_added',
+//   snapshot => {ref().on(
+//     'child_added',
+//     snapshot => {}
+// userDataRef.once("value").then(function(snapshot) { console.log(snapshot.val());
+// snapshot.forEach(function(childSnapshot) {
+//   var key = childSnapshot.key;
+//   var childData = childSnapshot.val();              
+
+//   var name_val = childSnapshot.val().email;
+//   // var id_val = childSnapshot.val().;
+//   console.log(name_val);
+
+//   $("#name").append(name_val);
+//   // $("#id").append(id_val);
+
+//   });
+// }),(function(error){ console.log(error)});
+};
+
+
+// Adding user email to authenticate via firebase
+firebase.auth().onAuthStateChanged(function(user) {
+
+  var username = usernameTxt.value;
+
+  if (user) {
+    firebaseDataBase.ref('users/' + user.uid).set({
+        email: user.email,
+        uid : user.uid,
+        username: username
+    });
+
+
+    console.log("User is signed in.");
+  } else {
+     console.log("No user is signed in.");
+
+  }
+});
+
+
+
