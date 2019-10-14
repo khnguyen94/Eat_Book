@@ -28,34 +28,51 @@ $(document).ready(
   // longitude= -122.3321
 
   // Create a renderRestaurants function that gets an API response
+
   function restaurantApp() {
-    // Grab the text from the search input
-    var searchString = $("#search-input")
-      .val()
-      .trim();
+    /* handle HTML Inputs */
+    // Search-container hidden when page load
+    $("#search-container").hide(0);
 
-    console.log(searchString);
-
-    // Construct queryURL
-    // What is Curl?
-    // curl -X GET --header "Accept: application/json" --header "user-key: d9062abf7aa13be6e735eea8b73c32c8" "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=italian&count=5&lat=47.6062&lon=-122.3321"
-    // When I run the curl request from terminal and manually putting in the API key, it works 
-
-    var queryURL =
-      "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=" +
-      searchString +
-      "&count=5";
-    var seattleID = "279";
-
-
-    // AJAX command
-    $.ajax({
-      "user-key": zomatoAPIKey,
-      url: queryURL,
-      method: "GET"
-    }).then(function (response) {
-      console.log(response.data);
+    // When #submit-button click, grab searchInput from #search-input
+    $(".submit-button").on("click", function submitButtonPreventDefault(e) {
+      e.preventDefault();
     });
+    // When #submit-button click, grab searchInput from #search-input
+    $("#search-submit-button").on("click", function handleSearchInput() {
+      var searchInput = $("#search-input").val().trim().split(" ").join("-").toLowerCase();
+      console.log("SearchInputHandle: " + searchInput);
+      $("#search-input").val("");
+      zomatoSearchReturn(searchInput);
+    });
+    // grab emailInput from #email-input
+    $("#email-submit-button").on("click", function handleEmailInput() {
+      var emailInput = $("#email-input").val().trim();
+      console.log("EmailInputHandle: " + emailInput);
+      $("#email-input").val("");
+    });
+
+
+    /* Zomato API search return */
+    function zomatoSearchReturn(searchString) {
+      console.log(searchString);
+
+      var queryURL =
+        "https://developers.zomato.com/api/v2.1/search?entity_id=279&entity_type=city&q=" +
+        searchString +
+        "&count=4";
+
+      // AJAX command
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+        headers: {
+          "user-key": zomatoAPIKey
+        },
+      }).then(function (response) {
+        console.log("Restaurant name API call success");
+      })
+    };
 
     // // Using a for-loop, loop through the JSON API response and dynamically create 4 new restaurant cards and append them to search result display
     // for (var i = 0; i < response.length; i++) {
@@ -92,10 +109,7 @@ $(document).ready(
     //   // Append col to search result display
     //   $("#search-container").append(newSearchResultCol);
     // };
-    // Create on-submit that then runs the renderRestaurants functino
-    $("#search-submit-button").on("click", function () {
-      renderRestaurants();
-    });
+
 
     // Create an on-click event listener that will capture and store the restaurant data from the specific search result the user clicked on in the database
 
