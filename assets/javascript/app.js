@@ -44,6 +44,7 @@ $(document).ready(
       console.log("SearchInputHandle: " + searchInput);
       $("#search-input").val("");
       zomatoSearchReturn(searchInput);
+      generateSearchCard();
     });
     // grab emailInput from #email-input
     $("#email-submit-button").on("click", function handleEmailInput() {
@@ -70,9 +71,33 @@ $(document).ready(
           "user-key": zomatoAPIKey
         },
       }).then(function (response) {
+        console.log(response);
+        // console.log("resName: " + response.restaurants.restaurant.name);
+
         console.log("Restaurant name API call success");
-      })
-    };
+        response.restaurants.forEach(function generateSearchCard(res) {
+            var newColDiv = $("<div>").attr("class", "col s12 m6");
+            var newCard = $("<div>").attr("class", "card horizontal");
+            var newCardContent = $("<div>").attr("class", "card-content");
+            var resDisplay = $("<p>").text(res.restaurant.name);
+            console.log(res.restaurant.name);
+            var ratDisplay = $("<p>").text(res.restaurant.user_rating.aggregate_rating);
+            var addrDisplay = $("<p>").text(res.restaurant.location.address);
+            var phoneDisplay = $("<p>").text(res.restaurant.phone_numbers);
+
+            /* add class="search-text-display" to <p> */
+            /* add button to each card*/
+
+            newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay);
+            newColDiv.append(newCard, newCardContent);
+            $("#search-container").append(newColDiv);
+            $("#search-container").show(0);
+
+        })})
+      };
+    
+
+    
 
     // // Using a for-loop, loop through the JSON API response and dynamically create 4 new restaurant cards and append them to search result display
     // for (var i = 0; i < response.length; i++) {
@@ -144,9 +169,6 @@ $(document).ready(
         database.ref().push(newRestaurant);
 
         // Close the confirmation pop-up
-
-        // Clear the search results
-        $("search-input").text("");
 
         // Read the data from database, automatically updates on initial data and then on further creation of new child objects in the database
         // Snapshot should only return the last object written into the database
