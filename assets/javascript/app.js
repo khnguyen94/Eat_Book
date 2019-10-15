@@ -101,6 +101,18 @@ $(document).ready(
           $("#search-container").append(newColDiv);
           $("#search-container").show(0);
         });
+
+        // Create a temporary array of objects to temporarily hold the top 4 search results taht is returned by the Zomato API
+        var tempResultRestaurants = [];
+
+        // For each restaurant result, create a new object where each object is one of the 4 result restaurants, each object has attributes of name, rating, address, and phone number
+        response.restaurants.forEach(function generateBackEnd(resBackEnd) {
+          // Create a new object called newRestBackEnd
+          var tempRestBackEnd = new Object();
+
+          // for that new backend restaurant object, define its: temp-id, name, rating, address, and phone number
+          tempRestBackEnd.tempRestID = $();
+        });
       });
     }
 
@@ -190,7 +202,6 @@ $(document).ready(
     });
 
     function updateTheHtml() {
-<<<<<<< HEAD
       console.log("updateThatHtmlIsCalled");
       var userDataRef = firebase
         .database()
@@ -205,21 +216,6 @@ $(document).ready(
             console.log("Error reading from database: ", err.code);
           }
         );
-=======
-      console.log("updateThatHtmlIsCalled")
-      var userDataRef = firebase.database().ref().on(
-        'child_added',
-        snapshot => {
-          console.log(snapshot.val().email);
-          $("#todo-restaurant-name-display").append(snapshot.val().email);
-          $("#todo-restaurant-phone-display").append(snapshot.val().email);
-          $("#todo-restaurant-rating-display").append(snapshot.val().email);
-          
-        },
-        err => {
-          console.log('Error reading from database: ', err.code);
-        });
->>>>>>> bad5e5a428069989b0389a8b159dd9ac0bbfa740
 
       // .ref().on()
 
@@ -260,35 +256,5 @@ $(document).ready(
         console.log("No user is signed in.");
       }
     });
-<<<<<<< HEAD
   }
 );
-=======
-    
-    
-    // Function to remove the user data from the database.
-    $(document.body).on("click", ".remove", function() {
-  
-      var buttonGradparentId = $(this).parent().parent().attr("id");
-      var removeRef = database.ref(buttonGradparentId);
-      removeRef.remove();
-      $(this).parent().parent().remove();
-      
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  });
->>>>>>> bad5e5a428069989b0389a8b159dd9ac0bbfa740
