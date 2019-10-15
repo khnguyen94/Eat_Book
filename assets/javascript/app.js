@@ -46,14 +46,7 @@ $(document).ready(
       zomatoSearchReturn(searchInput);
       generateSearchCard();
     });
-    // grab emailInput from #email-input
-    $("#email-submit-button").on("click", function handleEmailInput() {
-      var emailInput = $("#email-input").val().trim();
-      console.log("EmailInputHandle: " + emailInput);
-      $("#email-input").val("");
-    });
-
-
+    
     /* Zomato API search return */
     function zomatoSearchReturn(searchString) {
       console.log(searchString);
