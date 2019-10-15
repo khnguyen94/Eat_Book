@@ -65,14 +65,24 @@ $(document).ready(
             var newCard = $("<div>").attr("class", "card horizontal");
             var newCardContent = $("<div>").attr("class", "card-content");
             var resDisplay = $("<p>").text(res.restaurant.name);
-            resDisplay.
-            console.log(res.restaurant.name);
+            resDisplay.addClass("search-text-display");
             var ratDisplay = $("<p>").text(res.restaurant.user_rating.aggregate_rating);
+            ratDisplay.addClass("search-text-display");
             var addrDisplay = $("<p>").text(res.restaurant.location.address);
+            addrDisplay.addClass("search-text-display");
             var phoneDisplay = $("<p>").text(res.restaurant.phone_numbers);
+            phoneDisplay.addClass("search-text-display");
 
-            /* add class="search-text-display" to <p> */
+
+
+
             /* add button to each card*/
+            // <a class="waves-effect waves-light btn-flat btn-small" id="save-to-list-btn">Save to List</a>
+            var newCardSubmitButton = $("<a>");
+            newCardSubmitButton.addClass("waves-effect waves-light btn-flat btn-small");
+            newCardSubmitButton.attr("id", "save-to-list-btn");
+            newCardSubmitButton.text("Save to List");
+
 
             newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay);
             newColDiv.append(newCard, newCardContent);
