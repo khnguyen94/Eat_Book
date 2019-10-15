@@ -18,15 +18,6 @@ var database = firebase.database();
 
 $(document).ready(
 
-  // Create a renderRestaurants function that obtains am API response
-
-  // Base queryURL
-  // https://us-restaurant-menus.p.rapidapi.com
-
-  // Seattle's
-  // latitude= 47.6062
-  // longitude= -122.3321
-
   // Create a renderRestaurants function that gets an API response
 
   function restaurantApp() {
@@ -68,11 +59,13 @@ $(document).ready(
         // console.log("resName: " + response.restaurants.restaurant.name);
 
         console.log("Restaurant name API call success");
+
         response.restaurants.forEach(function generateSearchCard(res) {
             var newColDiv = $("<div>").attr("class", "col s12 m6");
             var newCard = $("<div>").attr("class", "card horizontal");
             var newCardContent = $("<div>").attr("class", "card-content");
             var resDisplay = $("<p>").text(res.restaurant.name);
+            resDisplay.
             console.log(res.restaurant.name);
             var ratDisplay = $("<p>").text(res.restaurant.user_rating.aggregate_rating);
             var addrDisplay = $("<p>").text(res.restaurant.location.address);
@@ -89,45 +82,6 @@ $(document).ready(
         })})
       };
     
-
-    
-
-    // // Using a for-loop, loop through the JSON API response and dynamically create 4 new restaurant cards and append them to search result display
-    // for (var i = 0; i < response.length; i++) {
-    //   // REFERENCE UPDATE NEEDED
-    //   // Create a new newSearchResultCol div
-    //   // Assign it a class of "col s12 m6"
-    //   var newSearchResultCol = $("<div>");
-    //   newSearchResultCol.addClass("col s12 m6");
-
-    //   // Create a new newSearchResultColCard div
-    //   // Assign it a class of "card horizontal"
-    //   var newSearchResultColCard = $("<div>");
-    //   newSearchResultColCard.addClass("card horizontal");
-
-    //   // Create a new div to hold the card
-    //   // Assign it a class of "card-image"
-    //   var newSearchResultColImgDiv = $("<div>");
-    //   newSearchResultColImgDiv.addClass("card-image");
-
-    //   // Create a new img div
-    //   // Assign it an attribute of src and set the src to be the image of the ith object in response
-    //   var newSearchResultColImage = $("<img>");
-    //   newSearchResultColImage.attr("src", response[i]); // REFERENCE UPDATE NEEDED
-
-    //   // Append image to imgdiv
-    //   newSearchResultColImgDiv.append(newSearchResultColImage);
-
-    //   // Append imgdiv to card
-    //   newSearchResultColCard.append(newSearchResultColImgDiv);
-
-    //   // Append card to col
-    //   newSearchResultCol.append(newSearchResultColCard);
-
-    //   // Append col to search result display
-    //   $("#search-container").append(newSearchResultCol);
-    // };
-
 
     // Create an on-click event listener that will capture and store the restaurant data from the specific search result the user clicked on in the database
 
