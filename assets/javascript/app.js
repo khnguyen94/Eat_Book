@@ -190,6 +190,7 @@ $(document).ready(
     });
 
     function updateTheHtml() {
+<<<<<<< HEAD
       console.log("updateThatHtmlIsCalled");
       var userDataRef = firebase
         .database()
@@ -204,6 +205,21 @@ $(document).ready(
             console.log("Error reading from database: ", err.code);
           }
         );
+=======
+      console.log("updateThatHtmlIsCalled")
+      var userDataRef = firebase.database().ref().on(
+        'child_added',
+        snapshot => {
+          console.log(snapshot.val().email);
+          $("#todo-restaurant-name-display").append(snapshot.val().email);
+          $("#todo-restaurant-phone-display").append(snapshot.val().email);
+          $("#todo-restaurant-rating-display").append(snapshot.val().email);
+          
+        },
+        err => {
+          console.log('Error reading from database: ', err.code);
+        });
+>>>>>>> bad5e5a428069989b0389a8b159dd9ac0bbfa740
 
       // .ref().on()
 
@@ -244,5 +260,35 @@ $(document).ready(
         console.log("No user is signed in.");
       }
     });
+<<<<<<< HEAD
   }
 );
+=======
+    
+    
+    // Function to remove the user data from the database.
+    $(document.body).on("click", ".remove", function() {
+  
+      var buttonGradparentId = $(this).parent().parent().attr("id");
+      var removeRef = database.ref(buttonGradparentId);
+      removeRef.remove();
+      $(this).parent().parent().remove();
+      
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+>>>>>>> bad5e5a428069989b0389a8b159dd9ac0bbfa740
