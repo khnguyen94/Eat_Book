@@ -70,11 +70,10 @@ $(document).ready(
           var addrDisplay = $("<p>").text(res.restaurant.location.address).addClass('search-text-display');;
           var phoneDisplay = $("<p>").text(res.restaurant.phone_numbers).addClass('search-text-display');
 
-          /* add class="search-text-display" to <p> */
+          // Add a add-to-list button to each 
+          var newCardAddToListBtn = $("<a>").addClass("waves-effect waves-light btn-flat btn-small").attr("id", "save-to-list-button").text("Save to List");
 
-          /* add button to each card*/
-
-          newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay);
+          newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay, newCardAddToListBtn);
           newColDiv.append(newCard);
           newCard.append(newCardContent);
           $("#search-container").append(newColDiv);
