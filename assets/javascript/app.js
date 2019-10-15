@@ -250,4 +250,30 @@ $(document).ready(
 
       }
     });
+    
+    
+    // Function to remove the user data from the database.
+    $(document.body).on("click", ".remove", function() {
+  
+      var buttonGradparentId = $(this).parent().parent().attr("id");
+      var removeRef = database.ref(buttonGradparentId);
+      removeRef.remove();
+      $(this).parent().parent().remove();
+      
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   });
