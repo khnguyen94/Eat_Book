@@ -199,6 +199,9 @@ $(document).ready(
         snapshot => {
           console.log(snapshot.val().email);
           $("#todo-restaurant-name-display").append(snapshot.val().email);
+          $("#todo-restaurant-phone-display").append(snapshot.val().email);
+          $("#todo-restaurant-rating-display").append(snapshot.val().email);
+          
         },
         err => {
           console.log('Error reading from database: ', err.code);
