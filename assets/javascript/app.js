@@ -73,7 +73,6 @@ $(document).ready(
           // Add a add-to-list button to each 
           var newCardAddToListBtn = $("<a>").addClass("waves-effect waves-light btn-flat btn-small").attr("id", "save-to-list-button").text("Save to List");
 
-
           newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay, newCardAddToListBtn);
           newColDiv.append(newCard);
           newCard.append(newCardContent);
