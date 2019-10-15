@@ -199,6 +199,9 @@ $(document).ready(
         snapshot => {
           console.log(snapshot.val().email);
           $("#todo-restaurant-name-display").append(snapshot.val().email);
+          $("#todo-restaurant-phone-display").append(snapshot.val().email);
+          $("#todo-restaurant-rating-display").append(snapshot.val().email);
+          
         },
         err => {
           console.log('Error reading from database: ', err.code);
@@ -247,4 +250,30 @@ $(document).ready(
 
       }
     });
+    
+    
+    // Function to remove the user data from the database.
+    $(document.body).on("click", ".remove", function() {
+  
+      var buttonGradparentId = $(this).parent().parent().attr("id");
+      var removeRef = database.ref(buttonGradparentId);
+      removeRef.remove();
+      $(this).parent().parent().remove();
+      
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   });
