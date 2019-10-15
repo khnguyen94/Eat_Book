@@ -104,10 +104,12 @@ $(document).ready(
           var phoneDisplay = $("<p>").text(res.restaurant.phone_numbers).addClass('search-text-display');
 
           /* add class="search-text-display" to <p> */
+
           /* add button to each card*/
 
           newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay);
-          newColDiv.append(newCard, newCardContent);
+          newColDiv.append(newCard);
+          newCard.append(newCardContent);
           $("#search-container").append(newColDiv);
           $("#search-container").show(0);
 
