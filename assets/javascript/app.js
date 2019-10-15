@@ -75,13 +75,16 @@ $(document).ready(
           console.log(res.restaurant.name);
           var ratDisplay = $("<p>")
             .text(res.restaurant.user_rating.aggregate_rating)
-            .addClass("search-text-display");
+            .addClass("search-text-display")
+            .attr("id", "restaurant-rating-display");;
           var addrDisplay = $("<p>")
             .text(res.restaurant.location.address)
-            .addClass("search-text-display");
+            .addClass("search-text-display")
+            .attr("id", "restaurant-address-display");;
           var phoneDisplay = $("<p>")
             .text(res.restaurant.phone_numbers)
-            .addClass("search-text-display");
+            .addClass("search-text-display")
+            .attr("id", "restaurant-phone-display");;
 
           // Add a add-to-list button to each
           var newCardAddToListBtn = $("<a>")
@@ -131,16 +134,25 @@ $(document).ready(
       console.log("New restaurant successfully created");
 
       // Set the name, rating, address, and phone number for the newRestaurant object from the search result that the user clicked on
-      newRestaurant.newRestaurantName = $();
-      newRestaurant.newRestaurantRating = $();
-      newRestaurant.newRestaurantAddress = $();
-      newRestaurant.newRestaurantPhoneNumber = $();
+      newRestaurant.newRestaurantName = $(this).siblings(
+        "p#restaurant-name-display"
+      ).text();
+      newRestaurant.newRestaurantRating = $(this).siblings(
+        "p#restaurant-rating-display"
+      ).text();
+      newRestaurant.newRestaurantAddress = $(this).siblings(
+        "p#restaurant-address-display"
+      ).text();
+      newRestaurant.newRestaurantPhoneNumber = $(this).siblings(
+        "p#restaurant-phone-display"
+      ).text();
 
-      // Console log newRestaurant object, now with information
       console.log(newRestaurant);
 
-      // Push the newRestaurant object to the database
+      // Save newTrain form inputs to firebase database
       database.ref().push(newRestaurant);
+
+      console.log("successfully pushed to db")
     });
 
     // Read the data from database, automatically updates on initial data and then on further creation of new child objects in the database
