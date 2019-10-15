@@ -4,8 +4,19 @@
 
 #map-panel {
     background-color: pink;
+    height: 500px;
 }
 
 .container {
     height: fit-content;
+}
+
+#restaurant-name-display {
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+.search-text-display {
+    font-size: 1.25rem;
+    padding-top: 1vh;
 }
