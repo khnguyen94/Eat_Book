@@ -17,7 +17,6 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 $(document).ready(
-
   // Create a renderRestaurants function that gets an API response
 
   function restaurantApp() {
@@ -31,7 +30,12 @@ $(document).ready(
     });
     // When #submit-button click, grab searchInput from #search-input
     $("#search-submit-button").on("click", function handleSearchInput() {
-      var searchInput = $("#search-input").val().trim().split(" ").join("-").toLowerCase();
+      var searchInput = $("#search-input")
+        .val()
+        .trim()
+        .split(" ")
+        .join("-")
+        .toLowerCase();
       console.log("SearchInputHandle: " + searchInput);
       $("#search-input").val("");
       zomatoSearchReturn(searchInput);
@@ -53,8 +57,8 @@ $(document).ready(
         method: "GET",
         headers: {
           "user-key": zomatoAPIKey
-        },
-      }).then(function (response) {
+        }
+      }).then(function(response) {
         console.log(response);
         // console.log("resName: " + response.restaurants.restaurant.name);
 
@@ -64,148 +68,166 @@ $(document).ready(
           var newColDiv = $("<div>").attr("class", "col s12 m6");
           var newCard = $("<div>").attr("class", "card horizontal");
           var newCardContent = $("<div>").attr("class", "card-content");
-          var resDisplay = $("<p>").text(res.restaurant.name).addClass('search-text-display').attr("id", "restaurant-name-display");
+          var resDisplay = $("<p>")
+            .text(res.restaurant.name)
+            .addClass("search-text-display")
+            .attr("id", "restaurant-name-display");
           console.log(res.restaurant.name);
-          var ratDisplay = $("<p>").text(res.restaurant.user_rating.aggregate_rating).addClass('search-text-display');
-          var addrDisplay = $("<p>").text(res.restaurant.location.address).addClass('search-text-display');;
-          var phoneDisplay = $("<p>").text(res.restaurant.phone_numbers).addClass('search-text-display');
+          var ratDisplay = $("<p>")
+            .text(res.restaurant.user_rating.aggregate_rating)
+            .addClass("search-text-display")
+            .attr("id", "restaurant-rating-display");;
+          var addrDisplay = $("<p>")
+            .text(res.restaurant.location.address)
+            .addClass("search-text-display")
+            .attr("id", "restaurant-address-display");;
+          var phoneDisplay = $("<p>")
+            .text(res.restaurant.phone_numbers)
+            .addClass("search-text-display")
+            .attr("id", "restaurant-phone-display");;
 
-          // Add a add-to-list button to each 
-          var newCardAddToListBtn = $("<a>").addClass("waves-effect waves-light btn-flat btn-small").attr("id", "save-to-list-button").text("Save to List");
+          // Add a add-to-list button to each
+          var newCardAddToListBtn = $("<a>")
+            .addClass("btn-small")
+            .attr("id", "save-to-list-button-" + res.restaurant.phone_numbers)
+            .text("Save to List");
 
-          newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay, newCardAddToListBtn);
+          newCardContent.append(
+            resDisplay,
+            ratDisplay,
+            addrDisplay,
+            phoneDisplay,
+            newCardAddToListBtn
+          );
           newColDiv.append(newCard);
           newCard.append(newCardContent);
           $("#search-container").append(newColDiv);
           $("#search-container").show(0);
+        });
 
-        })
-      })
-    };
+        // Create a temporary array of objects to temporarily hold the top 4 search results taht is returned by the Zomato API
+        var tempResultRestaurants = [];
 
+        // For each restaurant result, create a new object where each object is one of the 4 result restaurants, each object has attributes of name, rating, address, and phone number
+        response.restaurants.forEach(function generateBackEnd(resBackEnd) {
+          // Create a new object called newRestBackEnd
+          var tempRestBackEnd = new Object();
+
+          // for that new backend restaurant object, define its: temp-id, name, rating, address, and phone number
+          tempRestBackEnd.tempRestID = $();
+        });
+      });
+    }
 
     // Create an on-click event listener that will capture and store the restaurant data from the specific search result the user clicked on in the database
 
-    // $("#search-submit-button").on("click", function() {}
+    $(document).on("click", ".btn-small", function(event) {
+      // Prevent page refresh/reload
+      event.preventDefault();
 
-    // Then it should add functionality to add that restaurant to the to-visit list
-    $("").on("click", function () {
-      // Open up an in-browser pop-up that prompts the user if they want to add it to their to-visit list, "Add to to-visit list?"
+      console.log("clicked");
 
-      // Create internal on-click listeners for confirm add & cancel
-      // Click "Confirm" to add
-      $("#add-to-list-btn").on("click", function (event) {
-        // Prevent page refresh/reload
-        event.preventDefault();
+      // Create a new restaurant object
+      var newRestaurant = new Object();
 
-        // Create a new restaurant object
-        var newRestaurant = new Object();
+      // Confirm that a newRestaurant object was created
+      console.log("New restaurant successfully created");
 
-        // Confirm that a newRestaurant object was created
-        console.log("New restaurant successfully created");
+      // Set the name, rating, address, and phone number for the newRestaurant object from the search result that the user clicked on
+      newRestaurant.newRestaurantName = $(this).siblings(
+        "p#restaurant-name-display"
+      ).text();
+      newRestaurant.newRestaurantRating = $(this).siblings(
+        "p#restaurant-rating-display"
+      ).text();
+      newRestaurant.newRestaurantAddress = $(this).siblings(
+        "p#restaurant-address-display"
+      ).text();
+      newRestaurant.newRestaurantPhoneNumber = $(this).siblings(
+        "p#restaurant-phone-display"
+      ).text();
 
-        // Set the name, rating, address, and phone number for the newRestaurant object from the search result that the user clicked on
-        newRestaurant.newRestaurantName = $();
-        newRestaurant.newRestaurantRating = $();
-        newRestaurant.newRestaurantAddress = $();
-        newRestaurant.newRestaurantPhoneNumber = $();
+      console.log(newRestaurant);
 
-        // Console log newRestaurant object, now with information
-        console.log(newRestaurant);
+      // Save newTrain form inputs to firebase database
+      database.ref().push(newRestaurant);
 
-        // Push the newRestaurant object to the database
-        database.ref().push(newRestaurant);
-
-        // Close the confirmation pop-up
-
-        // Read the data from database, automatically updates on initial data and then on further creation of new child objects in the database
-        // Snapshot should only return the last object written into the database
-        database.ref().on("child_added", function (snapshot) {
-          // Create a reference handle for the database snapshot
-          let dbSnapshot = snapshot.val();
-
-          // Console log all the relevant information about the most recent newRestaurant object
-          console.log(dbSnapshot.newRestaurantName);
-          console.log(dbSnapshot.newRestaurantRating);
-          console.log(dbSnapshot.newRestaurantAddress);
-          console.log(dbSnapshot.newRestaurantPhoneNumber);
-
-          //
-        });
-
-        // Create the new to-visit restaurant item display
-        // Create new div for restaurant name
-        // Set name
-        var newRestaurantName = $("<div>");
-        newRestaurantName.text(dbSnapshot.newRestaurantName);
-
-        // Create new div for restaurant rating
-        // Set rating
-        var newRestaurantRating = $("<div>");
-        newRestaurantRating.text(dbSnapshot.newRestaurantRating);
-
-        // Create new div for restaurant address
-        // Set address
-        var newRestaurantAddress = $("<div>");
-        newRestaurantAddress.text(dbSnapshot.newRestaurantAddress);
-
-        // Create a new div for restaurant phone number
-        // Set phone number
-        var newRestaurantPhoneNumber = $("<div>");
-        newRestaurantPhoneNumber.text(dbSnapshot.newRestaurantPhoneNumber);
-
-        // Append restaurant component elements to the new restaurant object
-        newRestaurant.append(
-          newRestaurantName,
-          newRestaurantRating,
-          newRestaurantAddress,
-          newRestaurantPhoneNumber
-        );
-
-        // Append that newRestaurant object to the to-visit restaurant list
-      });
-
-      // Click "Cancel" to exit the pop-up
-      $("cancel-button").on("click", function () {
-        // Close the pop-up
-      });
+      console.log("successfully pushed to db")
     });
 
-    // Dynamically render HTML
-    // Create new to-do items based on Firebase data, have it auto refresh and auto populate when data changes, use "Add_Child" listener
-    // append to display area on the dashboard
+    // Read the data from database, automatically updates on initial data and then on further creation of new child objects in the database
+    // Snapshot should only return the last object written into the database
+    database.ref().on("child_added", function(snapshot) {
+      // Create a reference handle for the database snapshot
+      let dbSnapshot = snapshot.val();
 
+      // Console log all the relevant information about the most recent newRestaurant object
+      console.log(dbSnapshot.newRestaurantName);
+      console.log(dbSnapshot.newRestaurantRating);
+      console.log(dbSnapshot.newRestaurantAddress);
+      console.log(dbSnapshot.newRestaurantPhoneNumber);
+
+      // Create the new to-visit restaurant item display
+      // Create new div for restaurant name
+      // Set name
+      var newRestaurantName = $("<div>");
+      newRestaurantName.text(dbSnapshot.newRestaurantName);
+
+      // Create new div for restaurant rating
+      // Set rating
+      var newRestaurantRating = $("<div>");
+      newRestaurantRating.text(dbSnapshot.newRestaurantRating);
+
+      // Create new div for restaurant address
+      // Set address
+      var newRestaurantAddress = $("<div>");
+      newRestaurantAddress.text(dbSnapshot.newRestaurantAddress);
+
+      // Create a new div for restaurant phone number
+      // Set phone number
+      var newRestaurantPhoneNumber = $("<div>");
+      newRestaurantPhoneNumber.text(dbSnapshot.newRestaurantPhoneNumber);
+
+      // Append restaurant component elements to the new restaurant object
+      newRestaurant.append(
+        newRestaurantName,
+        newRestaurantRating,
+        newRestaurantAddress,
+        newRestaurantPhoneNumber
+      );
+
+      // Append that newRestaurant object to the to-visit restaurant list
+    });
 
     // grab emailInput from #email-input
-    $("#email-submit-button").on("click", function () {
+    $("#email-submit-button").on("click", function() {
       var emailInput = $("#email-input")
         .val()
         .trim();
       console.log(emailInput);
 
       database.ref().push({
-
-        email: emailInput,
-
+        email: emailInput
       });
       updateTheHtml();
       $("#email-input").val("");
     });
 
     function updateTheHtml() {
-      console.log("updateThatHtmlIsCalled")
-      var userDataRef = firebase.database().ref().on(
-        'child_added',
-        snapshot => {
-          console.log(snapshot.val().email);
-          $("#todo-restaurant-name-display").append(snapshot.val().email);
-          $("#todo-restaurant-phone-display").append(snapshot.val().email);
-          $("#todo-restaurant-rating-display").append(snapshot.val().email);
-          
-        },
-        err => {
-          console.log('Error reading from database: ', err.code);
-        });
+      console.log("updateThatHtmlIsCalled");
+      var userDataRef = firebase
+        .database()
+        .ref()
+        .on(
+          "child_added",
+          snapshot => {
+            console.log(snapshot.val().email);
+            $("#todo-restaurant-name-display").append(snapshot.val().email);
+          },
+          err => {
+            console.log("Error reading from database: ", err.code);
+          }
+        );
 
       // .ref().on()
 
@@ -217,7 +239,7 @@ $(document).ready(
       // userDataRef.once("value").then(function(snapshot) { console.log(snapshot.val());
       // snapshot.forEach(function(childSnapshot) {
       //   var key = childSnapshot.key;
-      //   var childData = childSnapshot.val();              
+      //   var childData = childSnapshot.val();
 
       //   var name_val = childSnapshot.val().email;
       //   // var id_val = childSnapshot.val().;
@@ -228,52 +250,23 @@ $(document).ready(
 
       //   });
       // }),(function(error){ console.log(error)});
-    };
-
+    }
 
     // Adding user email to authenticate via firebase
-    firebase.auth().onAuthStateChanged(function (user) {
-
+    firebase.auth().onAuthStateChanged(function(user) {
       var username = usernameTxt.value;
 
       if (user) {
-        firebaseDataBase.ref('users/' + user.uid).set({
+        firebaseDataBase.ref("users/" + user.uid).set({
           email: user.email,
           uid: user.uid,
           username: username
         });
 
-
         console.log("User is signed in.");
       } else {
         console.log("No user is signed in.");
-
       }
     });
-    
-    
-    // Function to remove the user data from the database.
-    $(document.body).on("click", ".remove", function() {
-  
-      var buttonGradparentId = $(this).parent().parent().attr("id");
-      var removeRef = database.ref(buttonGradparentId);
-      removeRef.remove();
-      $(this).parent().parent().remove();
-      
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  });
+  }
+);
