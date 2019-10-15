@@ -35,9 +35,9 @@ $(document).ready(
       console.log("SearchInputHandle: " + searchInput);
       $("#search-input").val("");
       zomatoSearchReturn(searchInput);
-      generateSearchCard();
+      // generateSearchCard();
     });
-    
+
     /* Zomato API search return */
     function zomatoSearchReturn(searchString) {
       console.log(searchString);
@@ -61,27 +61,27 @@ $(document).ready(
         console.log("Restaurant name API call success");
 
         response.restaurants.forEach(function generateSearchCard(res) {
-            var newColDiv = $("<div>").attr("class", "col s12 m6");
-            var newCard = $("<div>").attr("class", "card horizontal");
-            var newCardContent = $("<div>").attr("class", "card-content");
-            var resDisplay = $("<p>").text(res.restaurant.name);
-            resDisplay.
-            console.log(res.restaurant.name);
-            var ratDisplay = $("<p>").text(res.restaurant.user_rating.aggregate_rating);
-            var addrDisplay = $("<p>").text(res.restaurant.location.address);
-            var phoneDisplay = $("<p>").text(res.restaurant.phone_numbers);
+          var newColDiv = $("<div>").attr("class", "col s12 m6");
+          var newCard = $("<div>").attr("class", "card horizontal");
+          var newCardContent = $("<div>").attr("class", "card-content");
+          var resDisplay = $("<p>").text(res.restaurant.name).addClass('search-text-display').attr("id", "restaurant-name-display");
+          console.log(res.restaurant.name);
+          var ratDisplay = $("<p>").text(res.restaurant.user_rating.aggregate_rating).addClass('search-text-display');
+          var addrDisplay = $("<p>").text(res.restaurant.location.address).addClass('search-text-display');;
+          var phoneDisplay = $("<p>").text(res.restaurant.phone_numbers).addClass('search-text-display');
 
-            /* add class="search-text-display" to <p> */
-            /* add button to each card*/
+          /* add class="search-text-display" to <p> */
+          /* add button to each card*/
 
-            newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay);
-            newColDiv.append(newCard, newCardContent);
-            $("#search-container").append(newColDiv);
-            $("#search-container").show(0);
+          newCardContent.append(resDisplay, ratDisplay, addrDisplay, phoneDisplay);
+          newColDiv.append(newCard, newCardContent);
+          $("#search-container").append(newColDiv);
+          $("#search-container").show(0);
 
-        })})
-      };
-    
+        })
+      })
+    };
+
 
     // Create an on-click event listener that will capture and store the restaurant data from the specific search result the user clicked on in the database
 
