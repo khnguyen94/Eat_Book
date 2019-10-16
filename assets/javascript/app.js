@@ -224,13 +224,7 @@ $(document).on("click", ".btn-small", function(event) {
   // Save newTrain form inputs to firebase database
   database.ref().set(newUser);
 
-<<<<<<< HEAD
-      // Save newTrain form inputs to firebase database
-      database.ref().push(newUser);
-      database.ref().set(newUser);
-=======
   console.log("successfully pushed to db");
->>>>>>> master
 
   // Clear the search-display
   $("#search-container").html("");
