@@ -4,11 +4,14 @@
 
 #map-panel {
     background-color: pink;
-    height: 200px;
+    height: 500px;
 }
 
 .container {
     height: fit-content;
+}
+.brand-logo {
+    font-family: 'Mansalva', cursive;
 }
 
 #restaurant-name-display {
@@ -19,4 +22,17 @@
 .search-text-display {
     font-size: 1.25rem;
     padding-top: 1vh;
+}
+
+#search-container {
+    font-family: 'Slabo 27px', serif;
+}
+
+input, button {
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.nav-content {
+    font-family: 'Josefin Sans', sans-serif;
 }
