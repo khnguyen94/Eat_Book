@@ -71,6 +71,9 @@ $("#search-submit-button").on("click", function(event) {
 
   // renderSearchCards(newSearchQuery)
   renderSearchCards(newSearchQuery);
+
+  //call the function from Google map.js, once it sumit the restaurant's name, it will show on the map
+  initMap(newSearchQuery);
 });
 
 // Create a global variable to hold Zomato API response

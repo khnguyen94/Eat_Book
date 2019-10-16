@@ -5,7 +5,7 @@
         var service;
         var infowindow;
 
-        function initMap() {
+        function initMap(place) {
         //create a center of map, the restaurants will be searched near the location
         var seattle = new google.maps.LatLng(47.6062, -122.3321);
 
@@ -16,9 +16,8 @@
 
         var request = {
             location: seattle,
-            //fields: ['name', 'geometry'],
             radius: 8000,
-            query: list
+            query: place
 
         };
 
@@ -48,4 +47,4 @@
             });
         }
         //run the function
-        initMap();
+        //initMap(list);
