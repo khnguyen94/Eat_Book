@@ -207,96 +207,98 @@ $(document).on("click", ".btn-small", function(event) {
 });
 
 // Read data from database, automatically updates on initial data and then on further creation of new child objects in the database
-database.ref().on("value", function(snapshot) {
+database.ref().on("child_added", function(snapshot) {
   // Capture snapshot in global snapVal variable
   snapVal = snapshot.val();
 
-  console.log(snapVal[i].length);
+  console.log(snapVal);
 
-  // Create a for loop, that loops through the database and dynamically renders each restaurant object
-  for (var i = 0; i < snapVal[i].length; i++) {
-    // Console log all relevant information
-    console.log(snapVal[i].newRestaurantName);
-    console.log(snapVal[i].newRestaurantRating);
-    console.log(snapVal[i].newRestaurantAddress);
-    console.log(snapVal[i].newRestaurantPhoneNumber);
+  // Console log all relevant information
+  console.log(snapVal.newRestaurantName);
+  console.log(snapVal.newRestaurantRating);
+  console.log(snapVal.newRestaurantAddress);
+  console.log(snapVal.newRestaurantPhoneNumber);
 
-    // Create a newRestaurantRow, set value
-    var newRestaurantRow = $("<tr>");
+  // Create a newRestaurantRow, set value
+  var newRestaurantRow = $("<tr>");
 
-    // Create a mewRestaurantColName
-    var newRestaurantColName = $("<td>");
-    newRestaurantColName.attr("id", "todo-restaurant-name-display");
-    newRestaurantColName.text(snapVal[i].newRestaurantName);
+  // Create a mewRestaurantColName
+  var newRestaurantColName = $("<td>");
+  newRestaurantColName.attr("id", "todo-restaurant-name-display");
+  newRestaurantColName.text(snapVal.newRestaurantName);
 
-    // Create a newRestaurantColRating
-    var newRestaurantColRating = $("<td>");
-    newRestaurantColRating.attr("id", "todo-restaurant-rating-display");
-    newRestaurantColRating.text(snapVal[i].newRestaurantRating);
+  // Create a newRestaurantColRating
+  var newRestaurantColRating = $("<td>");
+  newRestaurantColRating.attr("id", "todo-restaurant-rating-display");
+  newRestaurantColRating.text(snapVal.newRestaurantRating);
 
-    // Create a newRestaurantColAddress
-    var newRestaurantColAddress = $("<td>");
-    newRestaurantColAddress.attr("id", "todo-restaurant-address-display");
-    newRestaurantColAddress.text(snapVal[i].newRestaurantAddress);
+  // Create a newRestaurantColAddress
+  var newRestaurantColAddress = $("<td>");
+  newRestaurantColAddress.attr("id", "todo-restaurant-address-display");
+  newRestaurantColAddress.text(snapVal.newRestaurantAddress);
 
-    // Create a newRestaurantColPhone
-    var newRestaurantColPhone = $("<td>");
-    newRestaurantColPhone.attr("id", "todo-restaurant-phone-display");
-    newRestaurantColPhone.text(snapVal[i].newRestaurantPhoneNumber);
+  // Create a newRestaurantColPhone
+  var newRestaurantColPhone = $("<td>");
+  newRestaurantColPhone.attr("id", "todo-restaurant-phone-display");
+  newRestaurantColPhone.text(snapVal.newRestaurantPhoneNumber);
 
-    // Check button
-    // Create a newRestaurantColBtn for check, add id
-    var newRestaurantColBtnCheck = $("<td>");
-    newRestaurantColBtnCheck.attr("id", "todo-check-btn");
+  // Check button
+  // Create a newRestaurantColBtn for check, add id
+  var newRestaurantColBtnCheck = $("<td>");
+  newRestaurantColBtnCheck.attr("id", "todo-check-btn");
 
-    // Create a newRestaurantColBtnLink for check
-    var newRestaurantColBtnCheckLink = $("<a>");
-    newRestaurantColBtnCheckLink.attr("href", "#!");
-    newRestaurantColBtnCheckLink.addClass(
-      "waves-effect waves-light btn-flat btn-small"
-    );
+  // Create a newRestaurantColBtnLink for check
+  var newRestaurantColBtnCheckLink = $("<a>");
+  newRestaurantColBtnCheckLink.attr("href", "#!");
+  newRestaurantColBtnCheckLink.addClass(
+    "waves-effect waves-light btn-flat btn-small"
+  );
 
-    // Create a newRestaurantColBtnLinkIcon
-    var newRestaurantColBtnCheckLinkIcon = $("<i>");
-    newRestaurantColBtnCheckLinkIcon.addClass("material-icons todo-done-btn1");
-    newRestaurantColBtnCheckLinkIcon.text("done");
+  // Create a newRestaurantColBtnLinkIcon
+  var newRestaurantColBtnCheckLinkIcon = $("<i>");
+  newRestaurantColBtnCheckLinkIcon.addClass("material-icons todo-done-btn1");
+  newRestaurantColBtnCheckLinkIcon.text("done");
 
-    // Append check button divs
-    newRestaurantColBtnCheckLink.append(newRestaurantColBtnCheckLinkIcon);
-    newRestaurantColBtnCheck.append(newRestaurantColBtnCheckLink);
+  // Append check button divs
+  newRestaurantColBtnCheckLink.append(newRestaurantColBtnCheckLinkIcon);
+  newRestaurantColBtnCheck.append(newRestaurantColBtnCheckLink);
 
-    // Cancel button
-    // Create a newRestaurantColBtn for cancel
-    var newRestaurantColBtnCancel = $("<td>");
-    newRestaurantColBtnCancel.attr("id", "todo-cancel-btn");
+  // Cancel button
+  // Create a newRestaurantColBtn for cancel
+  var newRestaurantColBtnCancel = $("<td>");
+  newRestaurantColBtnCancel.attr("id", "todo-cancel-btn");
 
-    // Create a newRestaurantColBtnLink for cancel
-    var newRestaurantColBtnCancelLink = $("<a>");
-    newRestaurantColBtnCancelLink.attr("href", "#!");
-    newRestaurantColBtnCancelLink.addClass(
-      "waves-effect waves-light btn-flat btn-small"
-    );
+  // Create a newRestaurantColBtnLink for cancel
+  var newRestaurantColBtnCancelLink = $("<a>");
+  newRestaurantColBtnCancelLink.attr("href", "#!");
+  newRestaurantColBtnCancelLink.addClass(
+    "waves-effect waves-light btn-flat btn-small"
+  );
 
-    // Create a newRestaurantColBtnLinkIcon
-    var newRestaurantColBtnCancelLinkIcon = $("<i>");
-    newRestaurantColBtnCancelLinkIcon.addClass("material-icons todo-done-btn1");
-    newRestaurantColBtnCancelLinkIcon.text("cancel");
+  // Create a newRestaurantColBtnLinkIcon
+  var newRestaurantColBtnCancelLinkIcon = $("<i>");
+  newRestaurantColBtnCancelLinkIcon.addClass("material-icons todo-done-btn1");
+  newRestaurantColBtnCancelLinkIcon.text("cancel");
 
-    // Append check button divs
-    newRestaurantColBtnCancelLink.append(newRestaurantColBtnCancelLinkIcon);
-    newRestaurantColBtnCancel.append(newRestaurantColBtnCancelLink);
+  // Append check button divs
+  newRestaurantColBtnCancelLink.append(newRestaurantColBtnCancelLinkIcon);
+  newRestaurantColBtnCancel.append(newRestaurantColBtnCancelLink);
 
-    // Append all new <tr>'s to the newRestaurantRow
-    newRestaurantRow.append(
-      newRestaurantColName,
-      newRestaurantColRating,
-      newRestaurantColAddress,
-      newRestaurantColPhone,
-      newRestaurantColBtnCheck,
-      newRestaurantColBtnCancel
-    );
+  // Append all new <tr>'s to the newRestaurantRow
+  newRestaurantRow.append(
+    newRestaurantColName,
+    newRestaurantColRating,
+    newRestaurantColAddress,
+    newRestaurantColPhone,
+    newRestaurantColBtnCheck,
+    newRestaurantColBtnCancel
+  );
 
-    // Append newRestaurantRow to <tbody>
-    $("#todo-restaurants").append(newRestaurantRow);
-  }
+  // Append newRestaurantRow to <tbody>
+  $("#todo-restaurants").append(newRestaurantRow);
+
+  // // Create a for loop, that loops through the database and dynamically renders each restaurant object
+  // for (var i = 0; i < snapshot.val().length; i++) {
+    
+  // }
 });
