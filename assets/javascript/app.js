@@ -75,6 +75,7 @@ $(document).on("click", "#email-submit-button", function() {
   }
 });
 
+
 // Create an on search-button click function that creates a new search handle based on what the user input
 $("#search-submit-button").on("click", function(event) {
   // Prevent the form from submitting itself
@@ -95,6 +96,9 @@ $("#search-submit-button").on("click", function(event) {
 
   // renderSearchCards(newSearchQuery)
   renderSearchCards(newSearchQuery);
+
+  //call the function from Google map.js, once it sumit the restaurant's name, it will show on the map
+  initMap(newSearchQuery);
 });
 
 // Create a global variable to hold Zomato API response
@@ -118,7 +122,8 @@ function renderSearchCards(searchQuery) {
   }).then(function(response) {
     // Assign global res variable to API response
     res = response.restaurants;
-
+    //Search and show all the restaurant on Google map by name
+    initMap(res);
     console.log(res);
 
     // Create a for-loop that goes through every one of those 4 objects in the response
