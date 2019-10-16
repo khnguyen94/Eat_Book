@@ -16,15 +16,21 @@ firebase.initializeApp(firebaseConfig);
 // Create handle reference on the database
 var database = firebase.database();
 
-// Create handle reference to authorization
+// Create universal Variables (UsersList, snapVal)
+var Users = [];
+var newUser = [];
+var snapVal;
 
 // Search-container hidden when page load
 $("#search-container").hide(0);
 
+<<<<<<< HEAD
 // Create an empty newUser object that will hold all restaurants for that user
 // Create a newUserEmail object
 var newUser = [];
 
+=======
+>>>>>>> master
 // Create an on-click listener for the email-submit-button that creates a new object with the user's email
 $(document).on("click", "#email-submit-button", function() {
   // Prevent page refresh/reload
@@ -39,9 +45,7 @@ $(document).on("click", "#email-submit-button", function() {
     // Grab the text from the email input box and set it as the email of the newUser
     newUser.userEmail = $("#email-input")
     alert("Error: Please input a valid email.");
-  }
-  // If field has email,
-  else {
+  } else {
     // Grab the text from the email input box and set it as the email of the newUser
     newUser.UserEmail = $("#email-input")
       .val()
@@ -182,58 +186,149 @@ function renderSearchCards(searchQuery) {
       // Show the #search-container
       $("#search-container").show(0);
     }
+  });
+}
 
-    // Read the data from database, automatically updates on initial data and then on further creation of new child objects in the database
-    // Snapshot should only return the last object written into the database
-    database.ref().on("value", function(snapshot) {
-      // Capture the snapshot.val() in a convenient variable
-      var snapVal = snapshot.val();
+// Create an on-click listener for the save-to-list button that creates a new object and with all the information of that rest and pushes it to the database
+$(document).on("click", ".btn-small", function(event) {
+  // Prevent page refresh/reload
+  event.preventDefault();
 
-      console.log(snapVal);
-    });
+  console.log("clicked");
 
-    // Create an on-click listener for the save-to-list button that creates a new object and with all the information of that rest and pushes it to the database
-    $(document).on("click", ".btn-small", function(event) {
-      // Prevent page refresh/reload
-      event.preventDefault();
+  // Create a new restaurant object
+  var newRestaurant = new Object();
 
-      console.log("clicked");
+  // Confirm that a newRestaurant object was created
+  console.log("New restaurant successfully created");
 
-      // Create a new restaurant object
-      var newRestaurant = new Object();
+  // Set the name, rating, address, and phone number for the newRestaurant object from the search result that the user clicked on
+  newRestaurant.newRestaurantName = $(this)
+    .siblings("p#restaurant-name-display")
+    .text();
+  newRestaurant.newRestaurantRating = $(this)
+    .siblings("p#restaurant-rating-display")
+    .text();
+  newRestaurant.newRestaurantAddress = $(this)
+    .siblings("p#restaurant-address-display")
+    .text();
+  newRestaurant.newRestaurantPhoneNumber = $(this)
+    .siblings("p#restaurant-phone-display")
+    .text();
 
-      // Confirm that a newRestaurant object was created
-      console.log("New restaurant successfully created");
+  console.log(newRestaurant);
 
-      // Set the name, rating, address, and phone number for the newRestaurant object from the search result that the user clicked on
-      newRestaurant.newRestaurantName = $(this)
-        .siblings("p#restaurant-name-display")
-        .text();
-      newRestaurant.newRestaurantRating = $(this)
-        .siblings("p#restaurant-rating-display")
-        .text();
-      newRestaurant.newRestaurantAddress = $(this)
-        .siblings("p#restaurant-address-display")
-        .text();
-      newRestaurant.newRestaurantPhoneNumber = $(this)
-        .siblings("p#restaurant-phone-display")
-        .text();
+  // Append the newRestaurant to the newUser
+  newUser.push(newRestaurant);
 
-      console.log(newRestaurant);
+  // Save newTrain form inputs to firebase database
+  database.ref().set(newUser);
 
-      // Append the newRestaurant to the newUser
-      newUser.push(newRestaurant);
-
+<<<<<<< HEAD
       // Save newTrain form inputs to firebase database
       database.ref().push(newUser);
       database.ref().set(newUser);
+=======
+  console.log("successfully pushed to db");
+>>>>>>> master
 
-      console.log("successfully pushed to db");
+  // Clear the search-display
+  $("#search-container").html("");
 
-      // Clear the search-display
-      $("#search-container").html("");
+  console.log("search display cleared");
+});
 
-      console.log("search display cleared");
-    });
-  });
-}
+// Read data from database, automatically updates on initial data and then on further creation of new child objects in the database
+database.ref().on("value", function(snapshot) {
+  // Capture snapshot in global snapVal variable
+  snapVal = snapshot.val();
+
+  console.log(snapVal[i].length);
+
+  // Create a for loop, that loops through the database and dynamically renders each restaurant object
+  for (var i = 0; i < snapVal[i].length; i++) {
+    // Console log all relevant information
+    console.log(snapVal[i].newRestaurantName);
+    console.log(snapVal[i].newRestaurantRating);
+    console.log(snapVal[i].newRestaurantAddress);
+    console.log(snapVal[i].newRestaurantPhoneNumber);
+
+    // Create a newRestaurantRow, set value
+    var newRestaurantRow = $("<tr>");
+
+    // Create a mewRestaurantColName
+    var newRestaurantColName = $("<td>");
+    newRestaurantColName.attr("id", "todo-restaurant-name-display");
+    newRestaurantColName.text(snapVal[i].newRestaurantName);
+
+    // Create a newRestaurantColRating
+    var newRestaurantColRating = $("<td>");
+    newRestaurantColRating.attr("id", "todo-restaurant-rating-display");
+    newRestaurantColRating.text(snapVal[i].newRestaurantRating);
+
+    // Create a newRestaurantColAddress
+    var newRestaurantColAddress = $("<td>");
+    newRestaurantColAddress.attr("id", "todo-restaurant-address-display");
+    newRestaurantColAddress.text(snapVal[i].newRestaurantAddress);
+
+    // Create a newRestaurantColPhone
+    var newRestaurantColPhone = $("<td>");
+    newRestaurantColPhone.attr("id", "todo-restaurant-phone-display");
+    newRestaurantColPhone.text(snapVal[i].newRestaurantPhoneNumber);
+
+    // Check button
+    // Create a newRestaurantColBtn for check, add id
+    var newRestaurantColBtnCheck = $("<td>");
+    newRestaurantColBtnCheck.attr("id", "todo-check-btn");
+
+    // Create a newRestaurantColBtnLink for check
+    var newRestaurantColBtnCheckLink = $("<a>");
+    newRestaurantColBtnCheckLink.attr("href", "#!");
+    newRestaurantColBtnCheckLink.addClass(
+      "waves-effect waves-light btn-flat btn-small"
+    );
+
+    // Create a newRestaurantColBtnLinkIcon
+    var newRestaurantColBtnCheckLinkIcon = $("<i>");
+    newRestaurantColBtnCheckLinkIcon.addClass("material-icons todo-done-btn1");
+    newRestaurantColBtnCheckLinkIcon.text("done");
+
+    // Append check button divs
+    newRestaurantColBtnCheckLink.append(newRestaurantColBtnCheckLinkIcon);
+    newRestaurantColBtnCheck.append(newRestaurantColBtnCheckLink);
+
+    // Cancel button
+    // Create a newRestaurantColBtn for cancel
+    var newRestaurantColBtnCancel = $("<td>");
+    newRestaurantColBtnCancel.attr("id", "todo-cancel-btn");
+
+    // Create a newRestaurantColBtnLink for cancel
+    var newRestaurantColBtnCancelLink = $("<a>");
+    newRestaurantColBtnCancelLink.attr("href", "#!");
+    newRestaurantColBtnCancelLink.addClass(
+      "waves-effect waves-light btn-flat btn-small"
+    );
+
+    // Create a newRestaurantColBtnLinkIcon
+    var newRestaurantColBtnCancelLinkIcon = $("<i>");
+    newRestaurantColBtnCancelLinkIcon.addClass("material-icons todo-done-btn1");
+    newRestaurantColBtnCancelLinkIcon.text("cancel");
+
+    // Append check button divs
+    newRestaurantColBtnCancelLink.append(newRestaurantColBtnCancelLinkIcon);
+    newRestaurantColBtnCancel.append(newRestaurantColBtnCancelLink);
+
+    // Append all new <tr>'s to the newRestaurantRow
+    newRestaurantRow.append(
+      newRestaurantColName,
+      newRestaurantColRating,
+      newRestaurantColAddress,
+      newRestaurantColPhone,
+      newRestaurantColBtnCheck,
+      newRestaurantColBtnCancel
+    );
+
+    // Append newRestaurantRow to <tbody>
+    $("#todo-restaurants").append(newRestaurantRow);
+  }
+});
