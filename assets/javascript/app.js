@@ -21,7 +21,11 @@ var database = firebase.database();
 // Search-container hidden when page load
 $("#search-container").hide(0);
 
+<<<<<<< HEAD
 // Create an empty newUser object that will hold all restaurants for that user
+=======
+// Create a newUserEmail object
+>>>>>>> 87218d2afd7c6035e917352dd3f19a94234e0206
 var newUser = [];
 
 // Create an on-click listener for the email-submit-button that creates a new object with the user's email
@@ -31,18 +35,28 @@ $(document).on("click", "#email-submit-button", function() {
 
   // If field is empty return error alert
   if ($("#email-input").length < 0 || $("#email-input").val() === "") {
+<<<<<<< HEAD
     alert("Error: Please input a valid email.");  // change away from alert
   }
   // If field has correct email,
   else {
     // Grab the text from the email input box and set it as the email of the newUser
     newUser.userEmail = $("#email-input")
+=======
+    alert("Error: Please input a valid email.");
+  }
+  // If field has email,
+  else {
+    // Grab the text from the email input box and set it as the email of the newUser
+    newUser.UserEmail = $("#email-input")
+>>>>>>> 87218d2afd7c6035e917352dd3f19a94234e0206
       .val()
       .trim()
       .split(" ")
       .join("-")
       .toLowerCase();
 
+<<<<<<< HEAD
     // newUser.toVisitRestaurants = [];
 
     console.log(newUser);
@@ -56,6 +70,12 @@ $(document).on("click", "#email-submit-button", function() {
     // Access the database to create a newUser if one with same email doesnt already exists
 
 
+=======
+    console.log(newUser);
+
+    // Access the database to create a newUser if one with same email doesnt already exists
+
+>>>>>>> 87218d2afd7c6035e917352dd3f19a94234e0206
     // If a user with that email does exist, then call all their data
   }
 });
@@ -214,7 +234,11 @@ function renderSearchCards(searchQuery) {
       newUser.push(newRestaurant);
 
       // Save newTrain form inputs to firebase database
+<<<<<<< HEAD
       database.ref().push(newUser);
+=======
+      database.ref().set(newUser);
+>>>>>>> 87218d2afd7c6035e917352dd3f19a94234e0206
 
       console.log("successfully pushed to db");
 

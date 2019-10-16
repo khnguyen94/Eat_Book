@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Restaurant Scheduler</title>
+    <title>Restaurant Keeper</title>
 
     <!-- Link CSS Reset -->
     <link rel="stylesheet" href="../potential_project1/assets/css/reset.css">
@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Mansalva|Slabo+27px&display=swap" rel="stylesheet">
 
+    <!-- <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet"> -->
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
@@ -33,7 +35,7 @@
     <!-- Create top nav bar -->
     <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Restaurants</a>
+            <a href="#" class="brand-logo center">Restaurant Keeper</a>
         </div>
         <div class="valign-wrapper nav-content row">
             <!-- search bar  -->
@@ -43,7 +45,7 @@
             </form>
             <!-- submit button for search bar  -->
             <div class="col s4">
-                <button class="btn waves-effect waves-light white-text submit-button" type="submit" name="action"
+                <button class="btn waves-effect waves-light white-text submit-button btn-small" type="submit" name="action"
                     id="search-submit-button">Submit
                 </button>
             </div>
@@ -65,8 +67,6 @@
 
     <!-- search container  -->
     <div class="row container" id="search-container">
-        <h6 class="header">Add one to your...</h2>
-
             <!-- <div class="col s12 m6">
                 <div class="card horizontal">
                     <div class="card-content">
@@ -101,9 +101,9 @@
 
                 <tbody>
                     <tr>
-                        <td id="todo-restaurant-name-display">Din Tai Fung</td>
-                        <td id="todo-restaurant-phone-display">206-525-0958</td>
-                        <td id="todo-restaurant-rating-display">5/5</td>
+                        <td id="todo-restaurant-name-display"></td>
+                        <td id="todo-restaurant-phone-display"></td>
+                        <td id="todo-restaurant-rating-display"></td>
                         <td id="todo-done-btn">
                             <a href="#!" class="waves-effect waves-light btn-flat btn-small">
                                 <i class="material-icons todo-done-btn1">done</i></a>
@@ -114,9 +114,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Din Tai Fung</td>
-                        <td>206-525-0958</td>
-                        <td>5/5</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a href="#!" class="waves-effect waves-light btn-flat btn-small">
                                 <i class="material-icons todo-done-btn1">done</i></a>
