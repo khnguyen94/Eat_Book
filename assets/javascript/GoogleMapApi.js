@@ -1,6 +1,6 @@
 
         // list is the array of list that should get value from firebase or other file
-        var list;
+        var list=['Starbuck','kfc'];
         var map;
         var service;
         var infowindow;
@@ -18,7 +18,7 @@
             location: seattle,
             //fields: ['name', 'geometry'],
             radius: 8000,
-            query: ['Starbuck','KfC']
+            query: list
 
         };
 
