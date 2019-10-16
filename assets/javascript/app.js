@@ -24,11 +24,6 @@ $("#search-container").hide(0);
 // Create an empty newUser object that will hold all restaurants for that user
 var newUser = [];
 
-$(document).ready(
-
-  
-);
-
 // Create an on-click listener for the email-submit-button that creates a new object with the user's email
 $(document).on("click", "#email-submit-button", function() {
   // Prevent page refresh/reload
