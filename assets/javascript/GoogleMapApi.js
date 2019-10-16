@@ -48,3 +48,15 @@
         }
         //run the function
         //initMap(list);
+
+        function Seattle() {
+          //create a center of map, the restaurants will be searched near the location
+          var seattle = new google.maps.LatLng(47.6062, -122.3321);
+  
+          infowindow = new google.maps.InfoWindow();
+  
+          map = new google.maps.Map(
+              document.getElementById('map-panel'), {center: seattle, zoom: 15});
+        }
+
+        Seattle();
