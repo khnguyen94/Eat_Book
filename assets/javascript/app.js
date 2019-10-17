@@ -236,10 +236,10 @@ database.ref().on("value", function(snapshot) {
   // Create a for loop, that loops through the database and dynamically renders each restaurant object
   for (var i = 0; i < snapVal[i].length; i++) {
     // Console log all relevant information
-    console.log(snapVal[i].newRestaurantName);
-    console.log(snapVal[i].newRestaurantRating);
-    console.log(snapVal[i].newRestaurantAddress);
-    console.log(snapVal[i].newRestaurantPhoneNumber);
+    console.log(snapVal.newRestaurantName);
+    console.log(snapVal.newRestaurantRating);
+    console.log(snapVal.newRestaurantAddress);
+    console.log(snapVal.newRestaurantPhoneNumber);
 
     // Create a newRestaurantRow, set value
     var newRestaurantRow = $("<tr>");
@@ -247,22 +247,22 @@ database.ref().on("value", function(snapshot) {
     // Create a mewRestaurantColName
     var newRestaurantColName = $("<td>");
     newRestaurantColName.attr("id", "todo-restaurant-name-display");
-    newRestaurantColName.text(snapVal[i].newRestaurantName);
+    newRestaurantColName.text(snapVal.newRestaurantName);
 
     // Create a newRestaurantColRating
     var newRestaurantColRating = $("<td>");
     newRestaurantColRating.attr("id", "todo-restaurant-rating-display");
-    newRestaurantColRating.text(snapVal[i].newRestaurantRating);
+    newRestaurantColRating.text(snapVal.newRestaurantRating);
 
     // Create a newRestaurantColAddress
     var newRestaurantColAddress = $("<td>");
     newRestaurantColAddress.attr("id", "todo-restaurant-address-display");
-    newRestaurantColAddress.text(snapVal[i].newRestaurantAddress);
+    newRestaurantColAddress.text(snapVal.newRestaurantAddress);
 
     // Create a newRestaurantColPhone
     var newRestaurantColPhone = $("<td>");
     newRestaurantColPhone.attr("id", "todo-restaurant-phone-display");
-    newRestaurantColPhone.text(snapVal[i].newRestaurantPhoneNumber);
+    newRestaurantColPhone.text(snapVal.newRestaurantPhoneNumber);
 
     // Check button
     // Create a newRestaurantColBtn for check, add id
