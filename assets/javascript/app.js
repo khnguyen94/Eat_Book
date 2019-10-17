@@ -227,14 +227,10 @@ $(document).on("click", ".btn-small", function(event) {
 });
 
 // Read data from database, automatically updates on initial data and then on further creation of new child objects in the database
-database.ref().on("value", function(snapshot) {
+database.ref().on("child_added", function(snapshot) {
   // Capture snapshot in global snapVal variable
   snapVal = snapshot.val();
 
-  console.log(snapVal.length);
-
-  // Create a for loop, that loops through the database and dynamically renders each restaurant object
-  for (var i = 0; i < snapVal.length; i++) {
     // Console log all relevant information
     console.log(snapVal.newRestaurantName);
     console.log(snapVal.newRestaurantRating);
@@ -318,5 +314,4 @@ database.ref().on("value", function(snapshot) {
 
     // Append newRestaurantRow to <tbody>
     $("#todo-restaurants").append(newRestaurantRow);
-  }
 });
