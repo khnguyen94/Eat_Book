@@ -314,4 +314,5 @@ database.ref().on("child_added", function(snapshot) {
 
     // Append newRestaurantRow to <tbody>
     $("#todo-restaurants").append(newRestaurantRow);
+}
 });
