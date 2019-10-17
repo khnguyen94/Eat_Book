@@ -227,7 +227,7 @@ $(document).on("click", ".btn-small", function(event) {
 });
 
 // Read data from database, automatically updates on initial data and then on further creation of new child objects in the database
-database.ref().on("value", function(snapshot) {
+database.ref().on("child_added", function(snapshot) {
   // Capture snapshot in global snapVal variable
   snapVal = snapshot.val();
 
