@@ -36,10 +36,6 @@ $(document).on("click", "#email-submit-button", function() {
   // If field has correct email,
   else {
     // Grab the text from the email input box and set it as the email of the newUser
-    newUser.userEmail = $("#email-input")
-    alert("Error: Please input a valid email.");
-  } else {
-    // Grab the text from the email input box and set it as the email of the newUser
     newUser.UserEmail = $("#email-input")
       .val()
       .trim()
