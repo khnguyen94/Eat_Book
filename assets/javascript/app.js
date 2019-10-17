@@ -231,10 +231,10 @@ database.ref().on("value", function(snapshot) {
   // Capture snapshot in global snapVal variable
   snapVal = snapshot.val();
 
-  console.log(snapVal[i].length);
+  console.log(snapVal.length);
 
   // Create a for loop, that loops through the database and dynamically renders each restaurant object
-  for (var i = 0; i < snapVal[i].length; i++) {
+  for (var i = 0; i < snapVal.length; i++) {
     // Console log all relevant information
     console.log(snapVal.newRestaurantName);
     console.log(snapVal.newRestaurantRating);
