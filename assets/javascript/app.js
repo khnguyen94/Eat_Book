@@ -24,12 +24,6 @@ var snapVal;
 // Search-container hidden when page load
 $("#search-container").hide(0);
 
-<<<<<<< HEAD
-// Create an empty newUser object that will hold all restaurants for that user
-// Create a newUserEmail object
-var newUser = [];
-
-=======
 >>>>>>> master
 // Create an on-click listener for the email-submit-button that creates a new object with the user's email
 $(document).on("click", "#email-submit-button", function() {
