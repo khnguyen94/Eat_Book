@@ -1,5 +1,4 @@
-# Project Name
-Restaurant Map
+# Restaurant Tracker 
 
 ### Team members 
 * Khoa Nguyen - khnguyen94
