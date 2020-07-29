@@ -1,6 +1,4 @@
-# project_template
-
-### Project Name
+# Project Name
 Restaurant Map
 
 ### Team members 
